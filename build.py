@@ -28,6 +28,7 @@ TEMPLATES = ROOT / "templates"
 BLOG_NAME = "IBM por Marcelle Rezende"
 BLOG_TAGLINE = "Notas práticas sobre os produtos da IBM: o que fazem, onde se encaixam e como começar."
 DEFAULT_AUTHOR = "Marcelle Rezende"
+SITE_ORIGINAL = "https://ibm-por-marcelle-rezende.web.app"
 MESES = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"]
 
 
@@ -76,7 +77,7 @@ def parse(path: Path) -> dict:
         "slug": slugify(path.stem),
         "titulo": meta.get("titulo") or path.stem,
         "data": data,
-        "data_txt": f"{data.day:02d} {MESES[data.month - 1]} {data.year}",
+        "data_txt": data.strftime("%d/%m/%Y"),
         "produto": meta.get("produto", ""),
         "resumo": meta.get("resumo", ""),
         "autor": meta.get("autor") or DEFAULT_AUTHOR,
@@ -109,28 +110,32 @@ def main() -> None:
             blog=esc(BLOG_NAME), titulo=esc(p["titulo"]), resumo=esc(p["resumo"]),
             produto=esc(p["produto"]), autor=esc(p["autor"]), data=p["data"].isoformat(),
             data_txt=p["data_txt"], leitura=p["leitura"], conteudo=p["html"],
+            site_original=SITE_ORIGINAL,
         ), encoding="utf-8")
 
     if posts:
-        items = "\n".join(
-            f'''<li class="entry">
-  <a href="posts/{p['slug']}.html">
-    <div class="entry-meta"><time datetime="{p['data'].isoformat()}">{p['data_txt']}</time>'''
-            + (f'<span class="tag">{esc(p["produto"])}</span>' if p["produto"] else "")
-            + f'''</div>
-    <h2>{esc(p['titulo'])}</h2>'''
-            + (f'\n    <p>{esc(p["resumo"])}</p>' if p["resumo"] else "")
-            + f'''
-    <span class="entry-more">Ler · {p['leitura']} min</span>
-  </a>
-</li>''' for p in posts)
-        lista = f'<ol class="entries">\n{items}\n</ol>'
+        lista = "\n".join(f'''      <div class="post-card">
+        <div class="post-header">
+          <img src="assets/images/perfil.jpeg" class="user-avatar" alt="{esc(p['autor'])}">
+          <div>
+            <div class="post-author">{esc(p['autor'])}</div>
+            <div class="post-title-job">Administradora</div>
+          </div>
+          <div class="post-time">{p['data_txt']}</div>
+        </div>
+        <div class="post-title">{esc(p['titulo'])}</div>
+        <div class="post-content" style="max-height:320px; overflow:hidden; position:relative;">
+          {p['html']}
+          <div style="position:absolute;bottom:0;left:0;right:0;height:60px;background:linear-gradient(transparent,rgba(255,255,255,0.95));pointer-events:none;"></div>
+        </div>
+        <a href="posts/{p['slug']}.html" class="post-more" style="display:inline-block;font-size:13px;color:var(--accent);font-weight:600;margin-bottom:0.75rem;text-decoration:none;">Ver post completo →</a>
+      </div>''' for p in posts)
     else:
-        lista = '<p class="empty">Nenhum post publicado ainda. O primeiro chega em breve.</p>'
+        lista = '      <p style="color:var(--muted);">Nenhum post publicado ainda.</p>'
 
     (ROOT / "index.html").write_text(render(
         "index.html", blog=esc(BLOG_NAME), tagline=esc(BLOG_TAGLINE),
-        total=len(posts), lista=lista, ano=dt.date.today().year, autor=esc(DEFAULT_AUTHOR),
+        lista=lista, site_original=SITE_ORIGINAL,
     ), encoding="utf-8")
     print(f"{len(posts)} post(s) gerado(s).")
 

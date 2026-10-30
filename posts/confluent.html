@@ -1,37 +1,46 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Confluent · IBM por Marcelle Rezende</title>
-<meta name="description" content="Os dados em tempo real estão se tornando um requisito não negociável para a era das soluções autônomas.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@500;600&display=swap">
-<link rel="stylesheet" href="../assets/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Confluent — IBM por Marcelle Rezende</title>
+  <meta name="description" content="Os dados em tempo real estão se tornando um requisito não negociável para a era das soluções autônomas." />
+  <link rel="stylesheet" href="../assets/style.css" />
+  <link rel="icon" type="image/png" href="../assets/images/logo2.png" />
 </head>
 <body>
-<header class="site-head">
-  <div class="wrap">
-    <a class="brand" href="../">IBM <span>por</span> Marcelle Rezende</a>
-    <nav>Produtos da IBM</nav>
+<canvas id="bg-canvas"></canvas>
+<nav>
+  <a href="../index.html" class="logo">
+    <img src="../assets/images/logo.png" alt="Logo" style="height:34px; width:auto;" />
+    por Marcelle Rezende
+  </a>
+  <ul class="nav-links" id="mobileMenu">
+    <li><a href="../index.html">HOME</a></li>
+    <li><a href="../index.html#conteudos">POSTS</a></li>
+    <li><a href="https://ibm-por-marcelle-rezende.web.app/resumos.html">RESUMOS</a></li>
+    <li><a href="https://ibm-por-marcelle-rezende.web.app/certificacoes.html">CERTIFICAÇÕES</a></li>
+    <li><a href="https://ibm-por-marcelle-rezende.web.app/sobre.html">SOBRE MIM</a></li>
+    <li><a href="https://ibm-por-marcelle-rezende.web.app/galeria.html">GALERIA</a></li>
+  </ul>
+  <div class="nav-actions" style="display:flex; align-items:center; gap:1rem;">
+    <button id="langToggleBtn" onclick="toggleLanguage()" style="background:none; border:none; font-size:24px; cursor:pointer; padding:0; line-height:1; transition:0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'" title="Mudar Idioma">🇺🇸</button>
+    <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
   </div>
-</header>
-
-<main class="wrap">
-  <article>
-    <header class="post-head">
-      <a class="back" href="../">← Todos os posts</a>
-      <h1>Confluent</h1>
-      <p class="lede">Os dados em tempo real estão se tornando um requisito não negociável para a era das soluções autônomas.</p>
-      <div class="post-meta">
-        <span class="tag">Confluent</span>
-        <span>Marcelle Rezende</span>
-        <time datetime="2026-10-30">30 out 2026</time>
-        <span>1 min de leitura</span>
+</nav>
+<div class="container" style="padding-top:2.5rem; padding-bottom:4rem; position:relative; z-index:5;">
+  <a href="../index.html#conteudos" class="back-link">← Voltar para Posts</a>
+  <div class="post-page-card">
+    <div class="post-page-author-row">
+      <img src="../assets/images/perfil.jpeg" class="user-avatar" style="width:44px;height:44px" alt="Marcelle Rezende" />
+      <div>
+        <div class="post-author">Marcelle Rezende</div>
+        <div class="post-title-job">Administradora</div>
       </div>
-    </header>
-    <div class="prose">
+      <div class="post-time">30/10/2026</div>
+    </div>
+    <h1 class="post-page-title">Confluent</h1>
+    <div class="post-page-content">
 <p>Os dados em tempo real estão se tornando um requisito não negociável para a era das soluções autônomas. A IA não pode gerar valor sem dados.</p>
 <p>A Confluent é líder indiscutível em transmissão de dados em tempo real.</p>
 <p>Agora, com a Confluent e a IBM juntas, temos a oportunidade de fornecer uma solução completa para conectar, processar e governar dados confiáveis em tempo real para aplicações e agentes de IA.</p>
@@ -40,11 +49,8 @@
 <p>Transações principais no MQ e IBM Z com Confluent tornam os dados transacionais disponíveis em toda a empresa com confiança e governança.</p>
 <p>A integração híbrida do IBM Web Methods e a Confluent juntas habilitam aplicativos, APIs, e ecossistemas B2B para responder a eventos operacionais ao vivo em ambientes híbridos e multinuvem.</p>
     </div>
-  </article>
-</main>
-
-<footer class="site-foot">
-  <div class="wrap"><a href="../">← Voltar para todos os posts</a></div>
-</footer>
+  </div>
+</div>
+<script src="../assets/js/site.js"></script>
 </body>
 </html>

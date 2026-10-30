@@ -1,43 +1,102 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>IBM por Marcelle Rezende</title>
-<meta name="description" content="Notas práticas sobre os produtos da IBM: o que fazem, onde se encaixam e como começar.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@500;600&display=swap">
-<link rel="stylesheet" href="assets/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IBM por Marcelle Rezende</title>
+  <link rel="stylesheet" href="assets/style.css" />
+  <link rel="icon" type="image/png" href="assets/images/logo.png" />
 </head>
+
 <body>
-<header class="site-head">
-  <div class="wrap">
-    <a class="brand" href="./">IBM <span>por</span> Marcelle Rezende</a>
-    <nav>Produtos da IBM</nav>
+
+  <canvas id="bg-canvas"></canvas>
+
+  <nav>
+    <a href="index.html" class="logo">
+      <img src="assets/images/logo.png" alt="Logo" style="height:34px; width:auto;" />
+      por Marcelle Rezende
+    </a>
+    <ul class="nav-links" id="mobileMenu">
+      <li><a href="index.html" class="active">HOME</a></li>
+      <li><a href="#conteudos">POSTS</a></li>
+      <li><a href="https://ibm-por-marcelle-rezende.web.app/resumos.html">RESUMOS</a></li>
+      <li><a href="https://ibm-por-marcelle-rezende.web.app/certificacoes.html">CERTIFICAÇÕES</a></li>
+      <li><a href="https://ibm-por-marcelle-rezende.web.app/sobre.html">SOBRE MIM</a></li>
+      <li><a href="https://ibm-por-marcelle-rezende.web.app/galeria.html">GALERIA</a></li>
+    </ul>
+    <div class="nav-actions" style="display:flex; align-items:center; gap:1rem;">
+      <button id="langToggleBtn" onclick="toggleLanguage()"
+        style="background:none; border:none; font-size:24px; cursor:pointer; padding:0; line-height:1; transition:0.2s;"
+        onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"
+        title="Mudar Idioma">🇺🇸</button>
+      <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
+    </div>
+  </nav>
+
+  <div class="hero-wrapper"
+    style="min-height: calc(100vh - 80px); display:flex; flex-direction:column; justify-content:center; align-items:center; position:relative; z-index:5;">
+    <div style="text-align:center; padding:2rem 1rem;">
+      <div style="display:flex; justify-content:center; align-items:center; gap:8px; margin-bottom:1.5rem;">
+        <img src="assets/images/logo.png" alt="Logo" style="height:34px; width:auto;" />
+        <span style="font-weight:500; font-size:20px; letter-spacing:-0.5px; color:#333;">por Marcelle Rezende</span>
+      </div>
+      <h1
+        style="font-size:4.5rem; font-weight:500; letter-spacing:-2.5px; line-height:1.1; max-width:900px; margin:0 auto 2.5rem; color:#111;">
+        Bem-vindo ao meu blog!
+      </h1>
+      <p style="font-size:1.4rem; color:var(--muted); max-width:800px; margin:0 auto 3rem; line-height:1.6;">
+        Aqui eu documento minha jornada e meus estudos, dividindo cada passo da minha evolução no mundo da tecnologia,
+        além de compartilhar um pouquinho da BigBlue.
+      </p>
+      <div class="hero-buttons" style="display:flex; justify-content:center; gap:1rem;">
+        <a href="#conteudos"
+          style="display:flex; align-items:center; justify-content:center; width:220px; height:54px; background:var(--accent); color:#fff; text-decoration:none; border-radius:100px; font-weight:500; font-size:15px; gap:8px; transition:0.2s; white-space:nowrap;"
+          onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+          Ver publicações
+        </a>
+        <a href="https://ibm-por-marcelle-rezende.web.app/sobre.html"
+          style="display:flex; align-items:center; justify-content:center; width:220px; height:54px; background:#f5f5f5; color:#111; text-decoration:none; border-radius:100px; font-weight:500; font-size:15px; border: 1px solid #eaeaea; transition:0.2s; white-space:nowrap;"
+          onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+          Conhecer Marcelle
+        </a>
+      </div>
+    </div>
   </div>
-</header>
 
-<main class="wrap">
-  <section class="hero">
-    <h1>Produtos da IBM, explicados sem rodeios.</h1>
-    <p>Notas práticas sobre os produtos da IBM: o que fazem, onde se encaixam e como começar.</p>
-    <div class="count">1 post(s)</div>
-  </section>
-  <ol class="entries">
-<li class="entry">
-  <a href="posts/confluent.html">
-    <div class="entry-meta"><time datetime="2026-10-30">30 out 2026</time><span class="tag">Confluent</span></div>
-    <h2>Confluent</h2>
-    <p>Os dados em tempo real estão se tornando um requisito não negociável para a era das soluções autônomas.</p>
-    <span class="entry-more">Ler · 1 min</span>
-  </a>
-</li>
-</ol>
-</main>
+  <img src="assets/images/gifempe.gif" id="heroGif" alt="Marcelle"
+    style="position:absolute; top:25vh; right:-10%; height:80vh; max-height:800px; z-index:4; opacity:0; transition: opacity 0.6s ease-out, transform 0.4s ease-out; object-fit:contain; pointer-events:auto; cursor:pointer;" />
 
-<footer class="site-foot">
-  <div class="wrap">© 2026 Marcelle Rezende. Conteúdo pessoal, sem vínculo oficial com a IBM.</div>
-</footer>
+  <div id="conteudos" class="container" style="max-width: 1000px; padding-top: 4rem;">
+    <h2 class="feed-header">Conteúdos Recentes</h2>
+    <div id="feed-container">
+      <div class="post-card">
+        <div class="post-header">
+          <img src="assets/images/perfil.jpeg" class="user-avatar" alt="Marcelle Rezende">
+          <div>
+            <div class="post-author">Marcelle Rezende</div>
+            <div class="post-title-job">Administradora</div>
+          </div>
+          <div class="post-time">30/10/2026</div>
+        </div>
+        <div class="post-title">Confluent</div>
+        <div class="post-content" style="max-height:320px; overflow:hidden; position:relative;">
+          <p>Os dados em tempo real estão se tornando um requisito não negociável para a era das soluções autônomas. A IA não pode gerar valor sem dados.</p>
+<p>A Confluent é líder indiscutível em transmissão de dados em tempo real.</p>
+<p>Agora, com a Confluent e a IBM juntas, temos a oportunidade de fornecer uma solução completa para conectar, processar e governar dados confiáveis em tempo real para aplicações e agentes de IA.</p>
+<p>As sinergias de produtos em nossa carteira de dados e automação trarão novo valor aos clientes desde o primeiro dia.</p>
+<p>A Confluent transmite dados operacionais ao vivo para o WatsonX.data, então cada modelo de agente e fluxo de trabalho roda com dados empresariais continuamente atualizados com governança estendida para dados em movimento.</p>
+<p>Transações principais no MQ e IBM Z com Confluent tornam os dados transacionais disponíveis em toda a empresa com confiança e governança.</p>
+<p>A integração híbrida do IBM Web Methods e a Confluent juntas habilitam aplicativos, APIs, e ecossistemas B2B para responder a eventos operacionais ao vivo em ambientes híbridos e multinuvem.</p>
+          <div style="position:absolute;bottom:0;left:0;right:0;height:60px;background:linear-gradient(transparent,rgba(255,255,255,0.95));pointer-events:none;"></div>
+        </div>
+        <a href="posts/confluent.html" class="post-more" style="display:inline-block;font-size:13px;color:var(--accent);font-weight:600;margin-bottom:0.75rem;text-decoration:none;">Ver post completo →</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/site.js"></script>
 </body>
+
 </html>

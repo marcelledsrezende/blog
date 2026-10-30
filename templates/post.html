@@ -1,44 +1,50 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>{{titulo}} · {{blog}}</title>
-<meta name="description" content="{{resumo}}">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@500;600&display=swap">
-<link rel="stylesheet" href="../assets/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{titulo}} — {{blog}}</title>
+  <meta name="description" content="{{resumo}}" />
+  <link rel="stylesheet" href="../assets/style.css" />
+  <link rel="icon" type="image/png" href="../assets/images/logo2.png" />
 </head>
 <body>
-<header class="site-head">
-  <div class="wrap">
-    <a class="brand" href="../">IBM <span>por</span> Marcelle Rezende</a>
-    <nav>Produtos da IBM</nav>
+<canvas id="bg-canvas"></canvas>
+<nav>
+  <a href="../index.html" class="logo">
+    <img src="../assets/images/logo.png" alt="Logo" style="height:34px; width:auto;" />
+    por Marcelle Rezende
+  </a>
+  <ul class="nav-links" id="mobileMenu">
+    <li><a href="../index.html">HOME</a></li>
+    <li><a href="../index.html#conteudos">POSTS</a></li>
+    <li><a href="{{site_original}}/resumos.html">RESUMOS</a></li>
+    <li><a href="{{site_original}}/certificacoes.html">CERTIFICAÇÕES</a></li>
+    <li><a href="{{site_original}}/sobre.html">SOBRE MIM</a></li>
+    <li><a href="{{site_original}}/galeria.html">GALERIA</a></li>
+  </ul>
+  <div class="nav-actions" style="display:flex; align-items:center; gap:1rem;">
+    <button id="langToggleBtn" onclick="toggleLanguage()" style="background:none; border:none; font-size:24px; cursor:pointer; padding:0; line-height:1; transition:0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'" title="Mudar Idioma">🇺🇸</button>
+    <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
   </div>
-</header>
-
-<main class="wrap">
-  <article>
-    <header class="post-head">
-      <a class="back" href="../">← Todos os posts</a>
-      <h1>{{titulo}}</h1>
-      <p class="lede">{{resumo}}</p>
-      <div class="post-meta">
-        <span class="tag">{{produto}}</span>
-        <span>{{autor}}</span>
-        <time datetime="{{data}}">{{data_txt}}</time>
-        <span>{{leitura}} min de leitura</span>
+</nav>
+<div class="container" style="padding-top:2.5rem; padding-bottom:4rem; position:relative; z-index:5;">
+  <a href="../index.html#conteudos" class="back-link">← Voltar para Posts</a>
+  <div class="post-page-card">
+    <div class="post-page-author-row">
+      <img src="../assets/images/perfil.jpeg" class="user-avatar" style="width:44px;height:44px" alt="{{autor}}" />
+      <div>
+        <div class="post-author">{{autor}}</div>
+        <div class="post-title-job">Administradora</div>
       </div>
-    </header>
-    <div class="prose">
+      <div class="post-time">{{data_txt}}</div>
+    </div>
+    <h1 class="post-page-title">{{titulo}}</h1>
+    <div class="post-page-content">
 {{conteudo}}
     </div>
-  </article>
-</main>
-
-<footer class="site-foot">
-  <div class="wrap"><a href="../">← Voltar para todos os posts</a></div>
-</footer>
+  </div>
+</div>
+<script src="../assets/js/site.js"></script>
 </body>
 </html>
